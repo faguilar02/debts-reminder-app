@@ -1,0 +1,21 @@
+
+<div class="flex justify-center items-center mt-6">
+
+  <debt-filter-month-year (onFilter)="getFilteredDate($event)"></debt-filter-month-year>
+
+</div>
+<section
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-20 ml-5 mr-5 mb-5 gap-5"
+>
+  @for (debt of debts(); track debt.code) {
+
+  <debt-card [debt]="debt"></debt-card>
+
+  } @empty {
+
+    <div class="flex justify-center items-center col-span-full h-96">
+      <div class="font-bold text-2xl text-center">NO TIENES DEUDAS</div>
+    </div>
+
+  }
+</section>

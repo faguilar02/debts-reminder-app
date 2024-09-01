@@ -1,0 +1,13 @@
+<form autocomplete="off" [formGroup]="myForm">
+  <p-calendar
+    [style]="{'border-radius': '5px'}"
+    [inputStyle]="{'padding': '5px 0px 5px 15px', 'font-size': '15px', 'background-color': 'rgb(38 38 38)', 'height': '42px'}"
+    formControlName="date"
+    placeholder="Filtrado por mes y año"
+    view="month"
+    dateFormat="mm/yy"
+    [readonlyInput]="true"
+    (onSelect)="onDateChange()"
+  ></p-calendar>
+
+</form>

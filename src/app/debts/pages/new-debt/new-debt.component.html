@@ -1,0 +1,113 @@
+<section class="flex flex-col justify-center items-center h-full mt-24">
+  <div class="bg-neutral-800 p-9 rounded">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <h1 class="text-center font-bold text-3xl">Nueva Deuda</h1>
+
+      <div class="flex flex-col my-4 gap-1">
+        <div>
+          <p class="text-xs mb-2">Nro de Documento</p>
+
+          <input
+            type="text"
+            placeholder="Número de documento"
+            formControlName="code"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+        <span class="text-red-600 text-xs mt-1 min-h-[16px] block"
+        [class.invisible]="!isValidField('code') ">
+    {{ getFieldError('code') }}
+  </span>
+
+        <div>
+          <p class="text-xs mb-2">Empresa</p>
+          <input
+            type="text"
+            formControlName="company"
+            placeholder="Empresa"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+        <span class="text-red-600 text-xs mt-1 min-h-[16px] block"
+        [class.invisible]="!isValidField('company') ">
+    {{ getFieldError('company') }}
+  </span>
+
+        <div>
+          <p class="text-xs mb-2">Monto S/.</p>
+          <input
+            type="number"
+            formControlName="amount"
+            placeholder="Monto a pagar en soles"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+        <span class="text-red-600 text-xs mt-1 min-h-[16px] block"
+        [class.invisible]="!isValidField('amount') ">
+    {{ getFieldError('amount') }}
+  </span>
+
+        <div>
+          <p class="text-xs mb-2">Fecha de Vencimiento</p>
+          <input
+            type="date"
+            formControlName="dueDate"
+            placeholder="Fecha de Vencimiento"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+        <span class="text-red-600 text-xs mt-1 min-h-[16px] block"
+        [class.invisible]="!isValidField('dueDate') ">
+    {{ getFieldError('dueDate') }}
+  </span>
+
+        <div>
+          <p class="text-xs mb-2">Estado (Pagada o no Pagada)</p>
+          <select
+            name="select"
+            class="p-2 bg-neutral-600 w-full rounded text-sm"
+            formControlName="state"
+          >
+            <option value="No Pagada" selected>No Pagada</option>
+            <option value="Pagada">Pagada</option>
+          </select>
+        </div>
+         <span class="text-red-600 text-xs mt-1 min-h-[16px] block"
+                [class.invisible]="!isValidField('state') ">
+            {{ getFieldError('state') }}
+          </span>
+
+        @if (!currentDebt.id) {
+
+        <div class="flex justify-center mt-2">
+
+          <button
+            class="rounded p-2 font-bold text-sm"
+            [disabled]="myForm.invalid"
+            type="submit"
+            [ngClass]="{'bg-neutral-700': myForm.invalid, 'bg-violet-700': !myForm.invalid }"
+    
+          >
+            Registrar Deuda
+          </button>
+        </div>
+        }@else {
+
+        <div class="flex justify-center mt-2">
+          <button
+            class=" rounded p-2 font-bold text-sm"
+            [disabled]="myForm.invalid"
+            type="submit"
+
+            [ngClass]="{'bg-neutral-700': myForm.invalid, 'bg-violet-700': !myForm.invalid }"
+          >
+            Actualizar Deuda
+          </button>
+        </div>
+
+        }
+      </div>
+    </form>
+  </div>
+
+</section>

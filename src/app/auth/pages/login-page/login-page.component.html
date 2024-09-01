@@ -1,0 +1,62 @@
+<section class="flex flex-col justify-center items-center h-full">
+  <div class="bg-neutral-800 p-10 rounded">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="login()">
+      <h1 class="text-center font-bold text-3xl">Inicio Sesión</h1>
+
+      <div class="flex flex-col my-8 gap-1">
+        <div>
+          <p class="text-xs mb-2">Email</p>
+          <input
+            type="email"
+            autocomplete="on"
+            formControlName="email"
+            placeholder="Correo electrónico"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+        <span
+          class="text-red-600 text-xs mt-1 min-h-[16px] block"
+          [class.invisible]="!isValidField('email')"
+        >
+          {{ getFieldError("email") }}
+        </span>
+
+        <div>
+          <p class="text-xs mb-2">Contraseña</p>
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Contraseña"
+            class="rounded bg-neutral-600 p-2 text-sm w-full"
+          />
+        </div>
+
+        <span
+          class="text-red-600 text-xs mt-1 min-h-[16px] block"
+          [class.invisible]="!isValidField('password')"
+        >
+          {{ getFieldError("password") }}
+        </span>
+
+        <div class="flex justify-center mt-2">
+          <button
+            class="rounded p-2 font-bold text-sm"
+            [disabled]="myForm.invalid"
+            type="submit"
+            [ngClass]="{
+              'bg-neutral-700': myForm.invalid,
+              'bg-violet-700': !myForm.invalid
+            }"
+          >
+            Iniciar Sesión
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="flex">
+      <p class="text-sm mr-2">No tienes una cuenta?</p>
+      <a routerLink="/auth/register" class="text-sm font-bold">Registrate</a>
+    </div>
+  </div>
+</section>
