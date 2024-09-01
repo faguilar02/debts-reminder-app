@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
+/src/custom-theme.scss
+
 
 # Node
 /node_modules
